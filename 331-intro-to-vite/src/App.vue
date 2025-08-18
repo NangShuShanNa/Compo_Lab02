@@ -5,6 +5,7 @@
 <template>
   <div id="layout">
     <header>
+     
       <div class="wrapper">
         <nav>
           <RouterLink to="/"> Home </RouterLink>

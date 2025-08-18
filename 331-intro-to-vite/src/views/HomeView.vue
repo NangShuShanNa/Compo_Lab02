@@ -7,6 +7,8 @@ import events from '../events.json'
 </script>
 
 <template>
+     <h1>Events For Good</h1>
+      <!--new elemement-->
   <div class="home">
     <EventCard 
       v-for="event in events" 

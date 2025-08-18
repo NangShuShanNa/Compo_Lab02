@@ -1,18 +1,21 @@
 <script setup lang="ts">
 import { ref } from 'vue'
+import type { Event } from '@/types'
 
-
-const event = ref({
-  id: 5932011,
-  category: 'animal welfare',
-  title: 'Cat Adoption Day',
-  description: 'Find your new feline friend at this event.',
-  location: 'Meow Town',
-  date: 'January 28, 2022',
-  time: '12:00',
-  petsallowed: true,
-  organizer: 'Kat Laydee'
-})
+defineProps<{
+  event:Event
+}>()
+// const event = ref({
+//   id: 5932011,
+//   category: 'animal welfare',
+//   title: 'Cat Adoption Day',
+//   description: 'Find your new feline friend at this event.',
+//   location: 'Meow Town',
+//   date: 'January 28, 2022',
+//   time: '12:00',
+//   petsallowed: true,
+//   organizer: 'Kat Laydee'
+// })
 </script>
 
 <template>

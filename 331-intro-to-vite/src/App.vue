@@ -8,6 +8,7 @@
       <div class="wrapper">
         <nav>
           <RouterLink to="/"> Home </RouterLink>
+          |
           <RouterLink to="/about"> About </RouterLink>
         </nav>
       </div>
@@ -17,7 +18,7 @@
 </template>
 
 
-<style scoped>
+<style >
 #layout {
   font-family: Avenir, Helvetica, Arial, sans-serif;
   -webkit-font-smoothing: antialiased;
@@ -32,10 +33,14 @@ nav {
 
 nav a {
   font-weight: bold;
-  color: #2c3e50;
+  color: #2c3e50; 
+  text-decoration: underline;
 }
 
 nav a.router-link-exact-active {
   color: #42b983;
+}
+h2{
+  font-size: 20px;
 }
 </style>

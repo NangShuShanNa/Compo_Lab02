@@ -9,19 +9,7 @@ import events from '../events.json'
 <template>
      <h1>Events For Good</h1>
       <!--new elemement-->
-  <div class="home">
-    <EventCard 
-      v-for="event in events" 
-      :key="event.id" 
-      :event="event" 
-    />
-    <EventInfo
-     v-for="event in events"
-     :key="event.id + '-info'"
-     :event="event"
-     />
-
-  </div>
+ 
 </template>
 <style scoped>
 .events {

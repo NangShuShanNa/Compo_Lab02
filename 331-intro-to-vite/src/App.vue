@@ -8,9 +8,11 @@
      
       <div class="wrapper">
         <nav>
-          <RouterLink to="/"> Home </RouterLink>
+         <RouterLink to="/"> Home </RouterLink>
           |
           <RouterLink to="/about"> About </RouterLink>
+          |
+          <RouterLink to="/detail"> Details </RouterLink>
         </nav>
       </div>
     </header>

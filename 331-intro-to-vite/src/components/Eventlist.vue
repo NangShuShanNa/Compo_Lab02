@@ -9,7 +9,7 @@ import EventInfo from './EventInfo.vue'
 const events = ref<Event[]| null>(null) 
 const totalEvents=ref(0)
 const hasNextPage=computed(()=>{
-    const totalPages=Math.ceil(totalEvents.value/2)
+    const totalPages=Math.ceil(totalEvents.value/3)
     return page.value < totalPages
 })
 const props=defineProps({
@@ -21,8 +21,8 @@ const props=defineProps({
 const page=computed(()=> props.page)
 onMounted(()=>{
    watchEffect(()=>{
-    events.value=null
-     EventService.getEvents(2,props.page)
+  
+     EventService.getEvents(3,props.page)
     .then((response) => {
       events.value = response.data // 👈 update events list
       totalEvents.value=response.headers['x-total-count']//server tells us how many events exist in total.

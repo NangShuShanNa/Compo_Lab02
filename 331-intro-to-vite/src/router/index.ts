@@ -9,6 +9,8 @@ import EventLayoutView from '../views/event/LayoutView.vue'
 import NotFoundView from '../views/NotFoundView.vue'
 import NetworkErrorView from '../views/NetworkErrorView.vue'
 import nProgress from 'nprogress'
+import EventService from '../services/EventService'
+import { useEventStore } from '../stores/event'   // ✅ import your store
 
 const routes = [
   { 
@@ -29,6 +31,24 @@ const routes = [
     name: 'event-layout-view',
     component: EventLayoutView,
     props: true,
+    beforeEnter: (to) => {
+      const id = parseInt(to.params.id as string)
+      const store = useEventStore()  // ✅ get store instance
+      return EventService.getEvent(id)
+        .then((response) => {
+          store.setEvent(response.data)   // ✅ save to store
+        })
+        .catch((error) => {
+          if (error.response && error.response.status === 404) {
+            return {
+              name: '404-resource-view',
+              params: { resource: 'event' }
+            }
+          } else {
+            return { name: 'network-error-view' }
+          }
+        })
+    },
     children: [
       {
         path: '',
@@ -52,35 +72,41 @@ const routes = [
   },
 
   // ⬇️ NotFound must be root-level
-{
-  path: '/404/:resource',
-  name: '404-resource-view',
-  component: NotFoundView,
-  props: true
-},
-{
-  path:'/network-error',
-  name:'network-error-view',
-  component: NetworkErrorView
-},
-{
-  path: '/:catchAll(.*)',
-  name: 'not-found',
-  component: NotFoundView
-}
-
-
+  {
+    path: '/404/:resource',
+    name: '404-resource-view',
+    component: NotFoundView,
+    props: true
+  },
+  {
+    path: '/network-error',
+    name: 'network-error-view',
+    component: NetworkErrorView
+  },
+  {
+    path: '/:catchAll(.*)',
+    name: 'not-found',
+    component: NotFoundView
+  }
 ]
 
 const router = createRouter({
   history: createWebHistory(),
   routes,
+ scrollBehavior(to, from, savedPosition) {
+    if (savedPosition) {
+      return savedPosition   // ✅ go back to previous scroll
+    } else {
+      return { top: 0 }      // ✅ default scroll to top
+    }
+  }
 })
-router.beforeEach(()=>{
-    nProgress.start()
+
+router.beforeEach(() => {
+  nProgress.start()
 })
-router.afterEach(()=>{
-    nProgress.done()
+router.afterEach(() => {
+  nProgress.done()
 })
 
 export default router

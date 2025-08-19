@@ -5,6 +5,7 @@ import { type Event } from '@/types'
 // Expect the whole event object from router props
 const props = defineProps<{
   event: Event
+  id:String
 }>()
 
 // make event reactive

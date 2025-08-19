@@ -1,28 +1,13 @@
-<template>
-  <div v-if="event">
-    <h1>{{ event.title }}</h1>
-    <nav>
-      <RouterLink :to="{ name: 'event-detail-view' }">Details</RouterLink> |
-      <RouterLink :to="{ name: 'event-register-view' }">Register</RouterLink> |
-      <RouterLink :to="{ name: 'event-edit-view' }">Edit</RouterLink>
-    </nav>
-
-    <!-- Pass event down as prop -->
-    <RouterView :event="event" />
-  </div>
-</template>
-
 <script setup lang="ts">
 import { ref, onMounted } from 'vue'
 import { type Event } from '../../types'
 import EventService from '../../services/EventService'
+import { useRoute, useRouter } from 'vue-router'
 
-// Store event object
 const event = ref<Event | null>(null)
 
-// Get event by id from route param
-import { useRoute } from 'vue-router'
-const route = useRoute()
+const route = useRoute()   // access :id from URL
+const router = useRouter() // redirect if error
 
 onMounted(() => {
   EventService.getEvent(parseInt(route.params.id as string))
@@ -30,7 +15,28 @@ onMounted(() => {
       event.value = response.data
     })
     .catch((error) => {
-      console.error('There was an error!', error)
+      if (error.response && error.response.status === 404) {
+        // resource not found → send to 404 page
+        router.push({
+          name: '404-resource-view',
+          params: { resource: 'event' }
+        })
+      } else {
+        // network/server error
+        router.push({ name: 'network-error-view' })
+      }
     })
 })
 </script>
+
+<template>
+  <div>
+    <h1>Event Layout</h1>
+
+    <!-- show child route if event is loaded -->
+    <router-view v-if="event" :event="event" />
+
+    <!-- optional: simple loading state -->
+    <p v-else>Loading event...</p>
+  </div>
+</template>

@@ -6,6 +6,8 @@ import EventDetailView from '../views/event/EventDetailView.vue'
 import RegisterView from '../views/event/RegisterView.vue'
 import EditView from '../views/event/EditView.vue'
 import EventLayoutView from '../views/event/LayoutView.vue'
+import NotFoundView from '../views/NotFoundView.vue'
+import NetworkErrorView from '../views/NetworkErrorView.vue'
 
 const routes = [
   { 
@@ -46,7 +48,27 @@ const routes = [
         props: true
       }
     ]
-  }
+  },
+
+  // ⬇️ NotFound must be root-level
+{
+  path: '/404/:resource',
+  name: '404-resource-view',
+  component: NotFoundView,
+  props: true
+},
+{
+  path:'/network-error',
+  name:'network-error-view',
+  component: NetworkErrorView
+},
+{
+  path: '/:catchAll(.*)',
+  name: 'not-found',
+  component: NotFoundView
+}
+
+
 ]
 
 const router = createRouter({

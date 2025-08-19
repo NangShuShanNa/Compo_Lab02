@@ -1,9 +1,13 @@
 import { createApp } from 'vue'
-import './style.css'
+import { createPinia } from 'pinia'
 import App from './App.vue'
-import router from './router'   // ✅ import the router
+import router from './router'
 
-const app = createApp(App)
+// ✅ create pinia instance
+const pinia = createPinia()
 
-app.use(router)   // ✅ tell Vue to use the router
-app.mount('#app')
+// ✅ install pinia & router
+createApp(App)
+  .use(pinia)   // <-- THIS IS MISSING
+  .use(router)
+  .mount('#app')

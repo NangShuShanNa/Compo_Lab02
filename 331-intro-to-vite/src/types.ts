@@ -10,3 +10,6 @@ export interface Event {
   organizer: string
   attending: boolean 
 }
+export interface MessageState{
+  message:string
+}

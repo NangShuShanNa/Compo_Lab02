@@ -1,10 +1,15 @@
-<script setup="'ts'">
+<script setup lang="ts">
+import { useMessageStore } from '@/stores/message'
+import { storeToRefs } from 'pinia'
 
+const messageStore = useMessageStore()
+const { message } = storeToRefs(messageStore)
 </script>
-
 <template>
   <div id="layout">
     <header>
+      <div id="flashMessage" v-if="message"></div>
+      <h4>{{ message }}</h4>
      
       <div class="wrapper">
         <nav>
@@ -45,5 +50,20 @@ nav a.router-link-exact-active {
 }
 h2{
   font-size: 20px;
+}
+@keyframes yellofade {
+  from {
+    background-color: yellow;
+  }
+  to {
+    background-color: transparent;
+  }
+}
+
+#flashMessage {
+  animation: yellofade 3s ease-in-out;
+  padding: 8px;
+  margin-bottom: 12px;
+  border-radius: 4px;
 }
 </style>

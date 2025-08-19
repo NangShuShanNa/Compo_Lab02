@@ -8,11 +8,11 @@
      
       <div class="wrapper">
         <nav>
-         <RouterLink to="/"> Home </RouterLink>
+         <RouterLink :to="{name:'event-list-view'}"> Home </RouterLink>
           |
-          <RouterLink to="/about"> About </RouterLink>
+          <RouterLink :to="{name:'About'}"> About </RouterLink>
           |
-          <RouterLink to="/detail"> Details </RouterLink>
+          <RouterLink :to="{name:'Detail'}"> Details </RouterLink>
         </nav>
       </div>
     </header>

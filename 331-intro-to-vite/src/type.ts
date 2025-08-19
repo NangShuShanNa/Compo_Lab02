@@ -8,4 +8,5 @@ export interface Event {
   time: string
   petsAllowed: boolean
   organizer: string
+  attending: boolean 
 }

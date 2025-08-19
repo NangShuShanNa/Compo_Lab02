@@ -1,19 +1,10 @@
 <script setup lang="ts">
-import { toRefs, defineProps } from 'vue'
-import { type Event } from '@/types'
+import { defineProps } from 'vue'
+import { type Event } from '../../types'
 
-// Expect the whole event object from router props
-const props = defineProps<{
-  event: Event
-  id:String
-}>()
-
-// make event reactive
-const { event } = toRefs(props)
+const props = defineProps<{ event: Event }>()
 </script>
 
 <template>
-
-
-  <p>Register here</p>
+  <p>Register here for: {{ event.title }}</p>
 </template>

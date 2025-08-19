@@ -8,6 +8,7 @@ import EditView from '../views/event/EditView.vue'
 import EventLayoutView from '../views/event/LayoutView.vue'
 import NotFoundView from '../views/NotFoundView.vue'
 import NetworkErrorView from '../views/NetworkErrorView.vue'
+import nProgress from 'nprogress'
 
 const routes = [
   { 
@@ -74,6 +75,12 @@ const routes = [
 const router = createRouter({
   history: createWebHistory(),
   routes,
+})
+router.beforeEach(()=>{
+    nProgress.start()
+})
+router.afterEach(()=>{
+    nProgress.done()
 })
 
 export default router

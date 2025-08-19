@@ -3,11 +3,14 @@ import { createPinia } from 'pinia'
 import App from './App.vue'
 import router from './router'
 
-// ✅ create pinia instance
+// ✅ Import nprogress styles
+import 'nprogress/nprogress.css'
+
+// ✅ Create pinia instance
 const pinia = createPinia()
 
-// ✅ install pinia & router
-createApp(App)
-  .use(pinia)   // <-- THIS IS MISSING
-  .use(router)
-  .mount('#app')
+// ✅ Install pinia & router into the app
+const app = createApp(App)
+app.use(pinia)
+app.use(router)
+app.mount('#app')

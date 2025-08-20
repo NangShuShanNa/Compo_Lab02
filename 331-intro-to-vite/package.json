@@ -9,6 +9,7 @@
     "preview": "vite preview"
   },
   "dependencies": {
+    "@tailwindcss/vite": "^4.1.12",
     "@types/nprogress": "^0.2.3",
     "axios": "^1.11.0",
     "nprogress": "^0.2.0",

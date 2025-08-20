@@ -66,6 +66,9 @@ button:focus-visible {
   padding: 2rem;
   text-align: center;
 }
+h1{
+  @apply text-4xl mb-8
+}
 
 @media (prefers-color-scheme: light) {
   :root {

@@ -36,7 +36,7 @@ onMounted(()=>{
 </script>
 <template>
   <h1>Events For Good</h1>
-  <div class="home">
+  <div class="flex flex-col items-center">
     <!-- Show each event with EventCard -->
     <EventCard 
       v-for="event in events" 

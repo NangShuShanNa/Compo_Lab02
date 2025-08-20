@@ -6,19 +6,20 @@ const messageStore = useMessageStore()
 const { message } = storeToRefs(messageStore)
 </script>
 <template>
-  <div id="layout">
+  <div class="text-center font-sans text-gray-700 antialiased">
     <header>
-      <div id="flashMessage" v-if="message"></div>
+      <div id="flashMessage" class="animate-fade" v-if="message"></div>
       <h4>{{ message }}</h4>
      
       <div class="wrapper">
         <nav>
-         <RouterLink :to="{name:'event-list-view'}"> Home </RouterLink>
+          <RouterLink :to="{name:'event-list-view'}"> Home </RouterLink>
           |
           <RouterLink :to="{name:'About'}"> About </RouterLink>
           |
           <RouterLink :to="{name:'Detail'}"> Details </RouterLink>
-        </nav>
+        </nav>  
+
       </div>
     </header>
     <RouterView />
@@ -26,14 +27,9 @@ const { message } = storeToRefs(messageStore)
 </template>
 
 
+
 <style >
-#layout {
-  font-family: Avenir, Helvetica, Arial, sans-serif;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
-  text-align: center;
-  color: #2c3e50;
-}
+
 
 nav {
   padding: 30px;

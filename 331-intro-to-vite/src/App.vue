@@ -10,7 +10,7 @@ const { message } = storeToRefs(messageStore)
     <header>
       <div id="flashMessage" class="animate-fade" v-if="message"></div>
       <h4>{{ message }}</h4>
-     
+     <h1>Deploy with Vercel Zanz</h1>
       <div class="wrapper">
         <nav>
           <RouterLink :to="{name:'event-list-view'}"> Home </RouterLink>

@@ -2,35 +2,38 @@
 import { useMessageStore } from '@/stores/message'
 import { storeToRefs } from 'pinia'
 
+// Import Speed Insights
+import { SpeedInsights } from "@vercel/speed-insights/vue"
+
 const messageStore = useMessageStore()
 const { message } = storeToRefs(messageStore)
 </script>
+
 <template>
   <div class="text-center font-sans text-gray-700 antialiased">
+    <!-- Vercel Speed Insights -->
+    <SpeedInsights />
+
     <header>
       <div id="flashMessage" class="animate-fade" v-if="message"></div>
       <h4>{{ message }}</h4>
-     <h1>Deploy with Vercel Zanz</h1>
+      <h1>Deploy with Vercel Zanz</h1>
       <div class="wrapper">
         <nav>
-          <RouterLink :to="{name:'event-list-view'}"> Home </RouterLink>
+          <RouterLink :to="{ name: 'event-list-view' }"> Home </RouterLink>
           |
-          <RouterLink :to="{name:'About'}"> About </RouterLink>
+          <RouterLink :to="{ name: 'About' }"> About </RouterLink>
           |
-          <RouterLink :to="{name:'Detail'}"> Details </RouterLink>
+          <RouterLink :to="{ name: 'Detail' }"> Details </RouterLink>
         </nav>  
-
       </div>
     </header>
+
     <RouterView />
   </div>
 </template>
 
-
-
-<style >
-
-
+<style>
 nav {
   padding: 30px;
 }
@@ -44,9 +47,11 @@ nav a {
 nav a.router-link-exact-active {
   color: #42b983;
 }
-h2{
+
+h2 {
   font-size: 20px;
 }
+
 @keyframes yellofade {
   from {
     background-color: yellow;
